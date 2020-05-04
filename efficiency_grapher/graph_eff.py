@@ -9,7 +9,8 @@ def read_root_files(root_file_path):
     energy_vals = []
     eff_vals = []
     for file_name in glob.glob("%s/*.root" % root_file_path):
-        energy = int(file_name[13:-5])
+        print(file_name)
+        energy = int((file_name.split('/')[-1]).split('.root')[0])
         print("Checking Energy : %i keV" % energy)
         events = uproot.open(file_name)['EVENT_NTUPLE']
         rounded_pulse_height = np.around(events.array("pulse_height"))
