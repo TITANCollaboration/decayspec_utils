@@ -3,9 +3,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
-
+import math
 font_size = 'large'
-cross_sec_neec_neon = 3.0e-5
+cross_sec_neec_neon = 3.0e-5  # Theoretical
+#cross_sec_neec_neon = 3e4  # Nature paper observation
 #particle_count_observed_in_MRTOF = 11
 attenuation = 10
 iglis_supression_factor = 1.0e6
@@ -45,13 +46,37 @@ def line_style(number):
         ls = '-.'
     return ls
 
+def calc_neec_xsec(ionDensity=1e7):
+    # This comes out to per second
+    __C__ = 3.0e10
+    #int_neec_xsec = 3e-5
+    __EMASS__ = 5.11e5
+    __ECHG__ = 1.6e-19
+    beamEnergy = 7000
+    beamCurrent = 0.2
+    beamRadius = 1.2e-2
+    barn = 1e-28 # m^2
+    barn_cm = barn * 1e4 # cm^2
+    currentDensity = beamCurrent / (math.pi*beamRadius**2)
+    electronVelocity = __C__*math.sqrt(1-(beamEnergy/__EMASS__+1)**-2)
+    electronDensity = currentDensity / __ECHG__ / electronVelocity
+    calc_xsec = ionDensity * electronDensity * electronVelocity * cross_sec_neec_neon * barn_cm
+
+    #print("Electron Velocity (cm/s)", f"{electronVelocity:.2e}")
+    #print("Electron Density cm^-3:", f"{electronDensity:.2e}")
+    #print("Neon xsec eV/s:", f"{calc_xsec:.2e}")
+
+    return calc_xsec  # per second
 
 def plot_neec_sum(args):
+    use_array_eff = False
+    if use_array_eff is not True:
+        array_eff = 1
     neec_events_per_time = []
     cycle_time = 10
     t = np.arange(0, args.time/cycle_time, 1)
 
-    PPS_in_ebit = [9e4, 1e5, 2e5, 3e5, 4e5]
+    PPS_in_ebit = [9e4, 1e5, 2e5, 3e5, 4e5, 5e5, 6e5, 1e6]
     neec_sum_over_time = []
     for my_pps_in_ebit in PPS_in_ebit:
         particle_count_in_trap = 0
@@ -59,9 +84,13 @@ def plot_neec_sum(args):
         for my_time in range(1, cycle_time + 1, 1):
             particle_count_in_trap = my_pps_in_ebit + (my_pps_in_ebit * my_time)
             if (my_time % 2) == 0:
-                neec_sum = neec_sum + (particle_count_in_trap*array_eff*max_charge_breed_population_avg*cross_sec_neec_neon)
-        neec_sum_over_time.append(neec_sum * t)
+                neec_sum = neec_sum + calc_neec_xsec(particle_count_in_trap) * array_eff
+#                print(neec_sum)
+                #print(f"{particle_count_in_trap:.2e}")
+                #neec_sum = neec_sum + (particle_count_in_trap*array_eff*max_charge_breed_population_avg*cross_sec_neec_neon)
 
+        neec_sum_over_time.append(neec_sum * t)
+        print("PPS to EBIT:", f"{my_pps_in_ebit:.2e}", "Counts per hour:", neec_sum * 3600)
     fig, ax = plt.subplots()
     for my_pps in range(0, len(neec_sum_over_time), 1):
         ls = line_style(my_pps)
@@ -72,8 +101,8 @@ def plot_neec_sum(args):
     plt.show()
     return 0
 
-
 def plot_neec_rough(args):
+    # No longer used
     neec_events_per_time = []
     t = np.arange(0.0, args.time, 0.01)
     for my_pps in range(0, len(est_PPS_in_ebit), 1):
@@ -91,12 +120,16 @@ def plot_neec_rough(args):
 def main():
     parser = argparse.ArgumentParser(description='Geant4 Macro Scheduler')
 
-    parser.add_argument('--time', dest='time', type=float, required=True,
+    parser.add_argument('--time', dest='time', type=float, required=False,
                         help="Time in seconds")
-
+    parser.add_argument('--xsec', dest='xsec', type=float, required=False,
+                        help="Time in seconds")
     args, unknown = parser.parse_known_args()
     # processConfigFile(args.configFile)
-    plot_neec_sum(args)
+    if args.xsec == 1:
+        calc_neec_xsec(1e7)
+    else:
+        plot_neec_sum(args)
     # plot_neec_rough(args)
 
     return 0
