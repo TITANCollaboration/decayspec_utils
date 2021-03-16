@@ -2,9 +2,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize as opt
 from cbgraph import calc_neec_xsec
+import math
 
 ions_pps = 1e5
 q41_in_trap = 0
+sb_129_halflife = 1062
 
 def eq_text_from_fit(poly_fit):
     my_fit_eq = ""
@@ -50,7 +52,12 @@ def plot_ions_in_trap(time, ions):
     plt.show()
     return
 
-def ions_in_trap_func(time, poly_fit):#, q41_in_trap):
+def decays_over_time(time_in_trap, half_life, particle_count):
+    decay_events = particle_count * (math.log(2) / half_life) * time_in_trap
+    return decay_events
+
+
+def ions_in_trap_func(time, poly_fit):  # , q41_in_trap):
     global q41_in_trap
     q41_in_trap = q41_in_trap + ions_pps * time * cb_rate_func(time % 1, poly_fit)
     return q41_in_trap
@@ -61,69 +68,108 @@ def carefully_mod_time(time):
     else:
         return time % 1
 
-def calc_ions_in_trap(poly_fit, new_ions_in_trap, injections_per_time=1, total_trapping_time=1):
+def calc_ions_in_trap(poly_fit, new_ions_in_trap, injections_per_time=1, total_breeding_time=0.69):
+    # Usually used per breeding cycle
     ions_in_trap = []
     if injections_per_time == 1:
-        time_lin_space = [total_trapping_time]
+        time_lin_space = [total_breeding_time]
     else:
-        time_lin_space = np.linspace(0, total_trapping_time, injections_per_time)
+        time_lin_space = np.linspace(0, total_breeding_time, injections_per_time)
     for mytime in time_lin_space:
-        #(ions_pps/injections_per_time)
         cycle_time = carefully_mod_time(mytime)
         q41_in_trap = (new_ions_in_trap) * cb_rate_func(cycle_time, poly_fit)
         if injections_per_time != 1:
             for prev_time in time_lin_space[0:np.where(time_lin_space == mytime)[0][0]]:
                 prev_cycle_time = carefully_mod_time(mytime - prev_time)
-                q41_in_trap = q41_in_trap + (new_ions_in_trap) * cb_rate_func(prev_cycle_time, poly_fit)
+                q41_in_trap = q41_in_trap + ((new_ions_in_trap) * cb_rate_func(prev_cycle_time, poly_fit))
         ions_in_trap.append(q41_in_trap)
     return max(ions_in_trap)
-        #print(str("{:.1e}".format(q41_in_trap)))
-#    plot_ions_in_trap(time_lin_space, ions_in_trap)
-#    return ions_in_trap
 
 
-def calc_over_breeding_times(poly_fit, breeding_time_per_cycle=1.0):
+def calc_over_breeding_times(poly_fit, new_ions_in_trap, breeding_time_per_cycle=1.0):
     ions_over_injection_times = []
-    ions_over_cycle_time = []
-    neec_event_count = []
-    neec_count = 0
-    #breeding_time_per_cycle = 1.0
-    trapping_time_per_cycle = 10
-    breeding_time_lin_space = np.linspace(0, breeding_time_per_cycle, 110)
-    trapping_time_lin_space = np.linspace(1, trapping_time_per_cycle, trapping_time_per_cycle)
-#calc_neec_xsec(#ions)
-    #  calc_neec_xsec(ions_in_trap)
-    ion_count = 0
+    breeding_time_lin_space = np.linspace(0, breeding_time_per_cycle, 11)
+    for breeding_time in breeding_time_lin_space:
+        ions_over_injection_times.append(calc_ions_in_trap(poly_fit, new_ions_in_trap, 1, breeding_time))
+    return ions_over_injection_times
+
+def calc_over_trapping_time(poly_fit, trapping_time_per_cycle=10, breeding_time_per_cycle=0.69):
     new_ions_in_trap = 0
+    cb_ions_in_trap = 0
+    decay_events = 0
+    trapping_time_lin_space = np.linspace(1, trapping_time_per_cycle, trapping_time_per_cycle, dtype=int)  # This gives us [1,2, ...trapping_time_per_cycle]
+    ions_over_breeding_time = []
+    neec_event_count = []
+    total_ions_in_trap = 0
     for trapping_time in trapping_time_lin_space:
         new_ions_in_trap = new_ions_in_trap + ions_pps
-        if (trapping_time % 2) == 0:  # We're in Breeding time
-            for breeding_time in breeding_time_lin_space:
-                ions_over_injection_times.append(calc_ions_in_trap(poly_fit, new_ions_in_trap, 1, breeding_time))
-            ion_count = ion_count + max(ions_over_injection_times)
-            ions_over_cycle_time.append(ion_count)
+        total_ions_in_trap = total_ions_in_trap + new_ions_in_trap
+        decay_events = decay_events + decays_over_time(1, sb_129_halflife, total_ions_in_trap)
+
+        if (trapping_time % 2) != 0:  # We're in Breeding time
+            #print("Breeding!")
+            ions_over_breeding_time.append(calc_over_breeding_times(poly_fit, new_ions_in_trap, breeding_time_per_cycle=breeding_time_per_cycle))
+            cb_ions_in_trap = cb_ions_in_trap + ions_over_breeding_time[-1][-1]
+            #print(cb_ions_in_trap)
             new_ions_in_trap = 0
         else:  # We're in NEEC time
+            #print("Neec'ing!")
             neec_time_this_cycle = 2 - breeding_time_per_cycle
-            neec_event_count.append(calc_neec_xsec(ion_count) * neec_time_this_cycle)
-    #print("Possible NEEC Events: ", sum(neec_event_count))
-    return sum(neec_event_count)
-    #print("NEEC Time!", neec_time)
-    #print("NEEC Events per second:", calc_neec_xsec())
-    print(ions_over_cycle_time)
-    plt.plot(np.linspace(0, trapping_time_per_cycle, len(ions_over_cycle_time)), ions_over_cycle_time)
-#    #plt.xlim([1, 100])
-    plt.title("Ion Injection timing", fontsize=20)
-    plt.xlabel("Breeding time - seconds", fontsize=20)
-    plt.ylabel("# 41+ ions in trap", fontsize=20)
+            #print("CB'd ions in Trap:", cb_ions_in_trap)
+            neec_event_count.append(calc_neec_xsec(cb_ions_in_trap) * neec_time_this_cycle)
+    #print(sum(neec_event_count))
+    return sum(neec_event_count), total_ions_in_trap, decay_events
+
+def graph_over_trapping_times(poly_fit):
+    global sb_129_halflife
+    max_trapping_time = 200
+    decay_events_per_trapping_times = []
+    neec_events_per_trapping_times = []
+    decay_events_per_trapping_times_for_hour = []
+    decays_per_trapping_times = []
+    neec_events_per_trapping_times_for_hour = []
+    trapping_time_range = np.linspace(0, max_trapping_time,max_trapping_time + 1, dtype=int)
+    for my_trapping_time in trapping_time_range:
+        #print(my_trapping_time)
+        neec_events, ions_in_trap, decay_events = calc_over_trapping_time(poly_fit, trapping_time_per_cycle=my_trapping_time)
+
+        neec_events_per_trapping_times.append(neec_events)
+        neec_events_per_trapping_times_for_hour.append((neec_events * (3600/my_trapping_time)))
+
+        decay_events_per_trapping_times.append(decay_events)
+        decay_events_per_trapping_times_for_hour.append((decay_events * (3600/my_trapping_time)))
+
+        print("Trapping time:", my_trapping_time, "Neec Events:", neec_events)
+
+#    for breeding_time_per_cycle in breeding_time_range:
+    decay_events_per_trapping_times_for_hour_np = np.array(decay_events_per_trapping_times_for_hour)
+    neec_events_per_trapping_times_for_hour_np = np.array(neec_events_per_trapping_times_for_hour)
+    signal_to_noise = neec_events_per_trapping_times_for_hour_np / decay_events_per_trapping_times_for_hour_np
+    print("Decay", decay_events_per_trapping_times_for_hour_np)
+    print("Neec", neec_events_per_trapping_times_for_hour_np)
+    print("SNR", signal_to_noise)
+    #plt.plot(trapping_time_range, neec_events_per_trapping_times_for_hour)
+
+    #plt.plot(trapping_time_range, neec_events_per_trapping_times)
+    #plt.plot(trapping_time_range, decay_events_per_trapping_times_for_hour)
+    plt.plot(trapping_time_range, signal_to_noise)
+    #plt.title("NEEC events per trapping cycle (10s)", fontsize=20)
+    plt.xlabel("Trapping time - seconds", fontsize=20)
+    #plt.ylabel("Decay events per hour", fontsize=20)
+    plt.ylabel("Signal to noise over hour", fontsize=20)
+
+    #plt.ylabel("Total # of NEEC events per hour", fontsize=20)
     plt.show()
+
 
 def graph_over_breeding_times(poly_fit):
     neec_rate = []
-    breeding_time_range = np.linspace(0, 1, 101)
+    breeding_time_range = np.linspace(0, 1, 110)
     for breeding_time_per_cycle in breeding_time_range:
-        neec_rate.append(calc_over_breeding_times(poly_fit, breeding_time_per_cycle))
+        neec_rate.append(calc_over_trapping_time(poly_fit, trapping_time_per_cycle=10, breeding_time_per_cycle=breeding_time_per_cycle)[0])
+    print(neec_rate)
     print("NEEC Index : ", neec_rate.index(max(neec_rate)))
+
     print("Time index of MAX NEEC:", breeding_time_range[neec_rate.index(max(neec_rate))])
     plt.plot(breeding_time_range, neec_rate)
 #    #plt.xlim([1, 100])
@@ -172,8 +218,6 @@ def fit_me(order):
 
 
 poly_fit, charge = fit_me(4)
-#calc_over_injection_times(poly_fit)
-#calc_over_breeding_times(poly_fit)
-graph_over_breeding_times(poly_fit)
-#calc_ions_in_trap (poly_fit)
-#calc_cb_rate(poly_fit, charge)
+
+graph_over_trapping_times(poly_fit)  # Find optimal trapping time
+#graph_over_breeding_times(poly_fit)  # Find optimal breeding time

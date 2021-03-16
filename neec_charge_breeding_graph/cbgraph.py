@@ -69,28 +69,32 @@ def calc_neec_xsec(ionDensity=1e7):
     return calc_xsec  # per second
 
 def plot_neec_sum(args):
-    use_array_eff = False
+    use_array_eff = True
+    global array_eff
     if use_array_eff is not True:
         array_eff = 1
     neec_events_per_time = []
     cycle_time = 10
     t = np.arange(0, args.time/cycle_time, 1)
 
-    PPS_in_ebit = [9e4, 1e5, 2e5, 3e5, 4e5, 5e5, 6e5, 1e6]
+    #PPS_in_ebit = [9e4, 1e5, 2e5, 3e5, 4e5, 5e5, 6e5, 1e6]
+    PPS_in_ebit = [1e5]
     neec_sum_over_time = []
     for my_pps_in_ebit in PPS_in_ebit:
         particle_count_in_trap = 0
         neec_sum = 0
         for my_time in range(1, cycle_time + 1, 1):
-            particle_count_in_trap = my_pps_in_ebit + (my_pps_in_ebit * my_time)
+            print("Time Index:", my_time)
+            particle_count_in_trap = particle_count_in_trap + (my_pps_in_ebit * max_charge_breed_population_avg)  #  + (my_pps_in_ebit * my_time)
+            print("Particles in Trap", particle_count_in_trap)
             if (my_time % 2) == 0:
                 neec_sum = neec_sum + calc_neec_xsec(particle_count_in_trap) * array_eff
-#                print(neec_sum)
+                print(neec_sum)
                 #print(f"{particle_count_in_trap:.2e}")
                 #neec_sum = neec_sum + (particle_count_in_trap*array_eff*max_charge_breed_population_avg*cross_sec_neec_neon)
 
         neec_sum_over_time.append(neec_sum * t)
-        print("PPS to EBIT:", f"{my_pps_in_ebit:.2e}", "Counts per hour:", neec_sum * 3600)
+        print("PPS to EBIT:", f"{my_pps_in_ebit:.2e}", "Counts per hour:", neec_sum * 360)
     fig, ax = plt.subplots()
     for my_pps in range(0, len(neec_sum_over_time), 1):
         ls = line_style(my_pps)
