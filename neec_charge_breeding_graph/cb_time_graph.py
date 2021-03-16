@@ -4,7 +4,7 @@ import scipy.optimize as opt
 from cbgraph import calc_neec_xsec
 import math
 
-ions_pps = 1e5
+ions_pps = 2e5
 q41_in_trap = 0
 sb_129_halflife = 1062
 
@@ -25,16 +25,10 @@ def eq_text_from_fit(poly_fit):
     print("Terms in fit.. ", my_fit_eq)
     return my_fit_eq
 
-def optimize(poly_fit):
-    #bnds = ((0, None), (0, None))
-    est_time = 2
-    results = opt.minimize(ions_in_trap_func, est_time, args=poly_fit)
-    print(results.x)
 
-
-def plot_cp_rate(time_lin_space, my_func_output, charge, poly_fit):
+def plot_cb_rate(time_lin_space, my_func_output, charge, poly_fit):
     plt.plot(time_lin_space, my_func_output, label="Polynomial Fit")
-    plt.plot(np.linspace(0, 1, len(charge)), charge, label="EBIT Sim output")
+    #plt.plot(np.linspace(0, 1, len(charge)), charge, label="EBIT Sim output")
     plt.title("Fitting Sb129 +41 charge breeding", fontsize=20)
     plt.xlabel("Seconds", fontsize=20)
     plt.ylabel("% Charge state in trap", fontsize=20)
@@ -94,6 +88,7 @@ def calc_over_breeding_times(poly_fit, new_ions_in_trap, breeding_time_per_cycle
     return ions_over_injection_times
 
 def calc_over_trapping_time(poly_fit, trapping_time_per_cycle=10, breeding_time_per_cycle=0.69):
+    # This function handles going back and forth between Breeding and NEECing
     new_ions_in_trap = 0
     cb_ions_in_trap = 0
     decay_events = 0
@@ -110,15 +105,51 @@ def calc_over_trapping_time(poly_fit, trapping_time_per_cycle=10, breeding_time_
             #print("Breeding!")
             ions_over_breeding_time.append(calc_over_breeding_times(poly_fit, new_ions_in_trap, breeding_time_per_cycle=breeding_time_per_cycle))
             cb_ions_in_trap = cb_ions_in_trap + ions_over_breeding_time[-1][-1]
-            #print(cb_ions_in_trap)
             new_ions_in_trap = 0
         else:  # We're in NEEC time
             #print("Neec'ing!")
             neec_time_this_cycle = 2 - breeding_time_per_cycle
-            #print("CB'd ions in Trap:", cb_ions_in_trap)
             neec_event_count.append(calc_neec_xsec(cb_ions_in_trap) * neec_time_this_cycle)
-    #print(sum(neec_event_count))
     return sum(neec_event_count), total_ions_in_trap, decay_events
+
+
+def calc_over_long_neec_time_short_breed_time(trapping_time_per_cycle=60, breeding_time=0.69, avg_charge_pop=0.672):
+    # This function handles long NEEC'ing times with one short charge breeding time
+    # Note this simplifies a LOT Of stuff, only use this one when your breeding time is a small fraction of your NEEC'ing time
+    # on the order of 1/60 where we do not need to care about the breeding time specifically and can average the charge population
+    global ions_pps
+    decay_events = 0
+    neec_event_count = 0
+    total_ions_in_trap = 0
+    total_ions_in_trap = ions_pps * trapping_time_per_cycle
+    total_cb_ions_in_trap = total_ions_in_trap * avg_charge_pop
+    print("Total ions in TRAP", total_ions_in_trap)
+    decay_events = decay_events + decays_over_time(trapping_time_per_cycle + breeding_time, sb_129_halflife, total_ions_in_trap)
+    neec_event_count = calc_neec_xsec(total_cb_ions_in_trap) * trapping_time_per_cycle
+
+    return neec_event_count, total_cb_ions_in_trap, decay_events
+
+def plot_long_cb_rate_over_hour(trapping_time_per_cycle=60, breeding_time=0.69, avg_charge_pop=0.672):
+    one_hr_lin_space = np.linspace(0, 60, 61, dtype=int)
+    decays_over_hour = []
+    neecs_over_hour = []
+    total_neec_events = 0
+    total_decay_events = 0
+    for my_min in one_hr_lin_space:
+        neec_events, total_cb_ions_in_trap, decay_events = calc_over_long_neec_time_short_breed_time(trapping_time_per_cycle, breeding_time, avg_charge_pop)
+        total_neec_events = total_neec_events + neec_events
+        total_decay_events = total_decay_events + decay_events
+        neecs_over_hour.append(total_neec_events)
+        decays_over_hour.append(total_decay_events)
+    print(decays_over_hour)
+    #plt.plot(one_hr_lin_space, neecs_over_hour)
+    plt.plot(one_hr_lin_space, decays_over_hour)
+
+    #plt.title("NEEC events per trapping cycle (10s)", fontsize=20)
+    plt.xlabel("Time - minutes (60sec trapping time)", fontsize=20)
+    plt.ylabel("Decay events", fontsize=20)
+    #plt.ylabel("# of NEEC Events Possible", fontsize=20)
+    plt.show()
 
 def graph_over_trapping_times(poly_fit):
     global sb_129_halflife
@@ -194,6 +225,7 @@ def calc_over_injection_times(poly_fit):
     plt.show()
 
 def cb_rate_func(time, poly_fit):
+    #p = np.poly1d([0.0000007, 0.00183744, 1.1])  # Griffin smearing
     p = np.poly1d(poly_fit)
     return p(time)
 
@@ -204,7 +236,7 @@ def calc_cb_rate(poly_fit, charge):
         my_val = 0
         my_val = cb_rate_func(mytime, poly_fit)
         charge_breed_eq.append(my_val)
-    plot_cp_rate(time_lin_space, charge_breed_eq, charge, poly_fit)
+    plot_cb_rate(time_lin_space, charge_breed_eq, charge, poly_fit)
     print(eq_text_from_fit(poly_fit))
     return charge_breed_eq
 
@@ -216,8 +248,12 @@ def fit_me(order):
     return poly_fit, charge
 
 
+#  For long NEEC'ing times we reach a charge breed equilibrium of ~67%
+#poly_fit, charge = fit_me(4)
+#poly_fit = np.array([-7.31702769e-10,  1.41824010e-07, -1.05850904e-05,  3.79854445e-04, -6.63719139e-03,  4.95546883e-02,  5.71005542e-01])
 
-poly_fit, charge = fit_me(4)
-
-graph_over_trapping_times(poly_fit)  # Find optimal trapping time
+#calc_cb_rate(poly_fit, charge=1)
+#print(calc_over_long_neec_time_short_breed_time())
+plot_long_cb_rate_over_hour()
+#graph_over_trapping_times(poly_fit)  # Find optimal trapping time
 #graph_over_breeding_times(poly_fit)  # Find optimal breeding time
