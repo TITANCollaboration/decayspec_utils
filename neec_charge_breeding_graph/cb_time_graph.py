@@ -3,6 +3,7 @@ import numpy as np
 import scipy.optimize as opt
 from cbgraph import calc_neec_xsec
 import math
+from scipy.integrate import quad
 
 ions_pps = 2e5
 q41_in_trap = 0
@@ -46,10 +47,12 @@ def plot_ions_in_trap(time, ions):
     plt.show()
     return
 
-def decays_over_time(time_in_trap, half_life, particle_count):
-    decay_events = particle_count * (math.log(2) / half_life) * time_in_trap
-    return decay_events
-
+def nuclear_activity(time_in_trap, half_life, particle_count):
+    # Integrate over the time in the trap to get decays per trapping time
+    lamb = math.log(2) / half_life
+    my_activity = lambda time: (lamb * particle_count * math.exp(-lamb*time))
+    decay_events = quad(my_activity, 0, time_in_trap)
+    return decay_events[0]
 
 def ions_in_trap_func(time, poly_fit):  # , q41_in_trap):
     global q41_in_trap
@@ -99,7 +102,7 @@ def calc_over_trapping_time(poly_fit, trapping_time_per_cycle=10, breeding_time_
     for trapping_time in trapping_time_lin_space:
         new_ions_in_trap = new_ions_in_trap + ions_pps
         total_ions_in_trap = total_ions_in_trap + new_ions_in_trap
-        decay_events = decay_events + decays_over_time(1, sb_129_halflife, total_ions_in_trap)
+        decay_events = decay_events + nuclear_activity(1, sb_129_halflife, total_ions_in_trap)
 
         if (trapping_time % 2) != 0:  # We're in Breeding time
             #print("Breeding!")
@@ -124,7 +127,7 @@ def calc_over_long_neec_time_short_breed_time(trapping_time_per_cycle=60, breedi
     total_ions_in_trap = ions_pps * trapping_time_per_cycle
     total_cb_ions_in_trap = total_ions_in_trap * avg_charge_pop
     print("Total ions in TRAP", total_ions_in_trap)
-    decay_events = decay_events + decays_over_time(trapping_time_per_cycle + breeding_time, sb_129_halflife, total_ions_in_trap)
+    decay_events = decay_events + nuclear_activity(trapping_time_per_cycle + breeding_time, sb_129_halflife, total_ions_in_trap)
     neec_event_count = calc_neec_xsec(total_cb_ions_in_trap) * trapping_time_per_cycle
 
     return neec_event_count, total_cb_ions_in_trap, decay_events
