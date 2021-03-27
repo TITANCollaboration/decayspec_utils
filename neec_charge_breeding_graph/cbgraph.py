@@ -46,22 +46,28 @@ def line_style(number):
         ls = '-.'
     return ls
 
-def calc_neec_xsec(ionDensity=1e7):
+def calc_neec_xsec(ionDensity=2e5):
     # This comes out to per second
     __C__ = 3.0e10
     #int_neec_xsec = 3e-5
     __EMASS__ = 5.11e5
     __ECHG__ = 1.6e-19
-    beamEnergy = 7000
+    beamEnergy = 7100
     beamCurrent = 0.2
     beamRadius = 1.2e-2
     barn = 1e-28 # m^2
     barn_cm = barn * 1e4 # cm^2
+    volume = math.pi * beamRadius**2 * 6
+    resonance_energy = .01
+    #print("Volume ", volume)
     currentDensity = beamCurrent / (math.pi*beamRadius**2)
+    #print("Current Density: ", currentDensity)
     electronVelocity = __C__*math.sqrt(1-(beamEnergy/__EMASS__+1)**-2)
+    #print("Electron Velocity:  ", electronVelocity)
     electronDensity = currentDensity / __ECHG__ / electronVelocity
-    calc_xsec = ionDensity * electronDensity * electronVelocity * cross_sec_neec_neon * barn_cm
-
+    #print("Electron DENSITY:  ", electronDensity)
+    calc_xsec = volume * ionDensity * electronDensity * electronVelocity * cross_sec_neec_neon * barn_cm * resonance_energy
+    print("Cross sec:  ", calc_xsec)
     #print("Electron Velocity (cm/s)", f"{electronVelocity:.2e}")
     #print("Electron Density cm^-3:", f"{electronDensity:.2e}")
     #print("Neon xsec eV/s:", f"{calc_xsec:.2e}")
