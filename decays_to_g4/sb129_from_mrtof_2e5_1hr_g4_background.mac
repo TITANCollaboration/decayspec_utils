@@ -1,1026 +1,108 @@
-# START: sb129_95.42
+# START: sb129m1_IT_960188_3.6
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 95.42 keV
+/gps/energy 3.6 keV
 /gps/ang/type iso
-/histo/filename sb129_95.42
-/run/beamOn 3
-# END
-# START: sb129_115.84
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 115.84 keV
-/gps/ang/type iso
-/histo/filename sb129_115.84
-/run/beamOn 6
-# END
-# START: sb129_146.11
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 146.11 keV
-/gps/ang/type iso
-/histo/filename sb129_146.11
-/run/beamOn 6
-# END
-# START: sb129_180.42
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 180.42 keV
-/gps/ang/type iso
-/histo/filename sb129_180.42
-/run/beamOn 185
-# END
-# START: sb129_244.53
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 244.53 keV
-/gps/ang/type iso
-/histo/filename sb129_244.53
-/run/beamOn 26
-# END
-# START: sb129_268.48
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 268.48 keV
-/gps/ang/type iso
-/histo/filename sb129_268.48
-/run/beamOn 14
-# END
-# START: sb129_295.26
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 295.26 keV
-/gps/ang/type iso
-/histo/filename sb129_295.26
-/run/beamOn 54
-# END
-# START: sb129_314.4
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 314.4 keV
-/gps/ang/type iso
-/histo/filename sb129_314.4
-/run/beamOn 8
-# END
-# START: sb129_318.36
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 318.36 keV
-/gps/ang/type iso
-/histo/filename sb129_318.36
-/run/beamOn 15
-# END
-# START: sb129_330.33
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 330.33 keV
-/gps/ang/type iso
-/histo/filename sb129_330.33
-/run/beamOn 5
-# END
-# START: sb129_333.21
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 333.21 keV
-/gps/ang/type iso
-/histo/filename sb129_333.21
-/run/beamOn 11
-# END
-# START: sb129_351.46
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 351.46 keV
-/gps/ang/type iso
-/histo/filename sb129_351.46
-/run/beamOn 5
-# END
-# START: sb129_354.13
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 354.13 keV
-/gps/ang/type iso
-/histo/filename sb129_354.13
-/run/beamOn 6
-# END
-# START: sb129_359.2
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 359.2 keV
-/gps/ang/type iso
-/histo/filename sb129_359.2
-/run/beamOn 155
-# END
-# START: sb129_364.21
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 364.21 keV
-/gps/ang/type iso
-/histo/filename sb129_364.21
-/run/beamOn 20
-# END
-# START: sb129_404.64
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 404.64 keV
-/gps/ang/type iso
-/histo/filename sb129_404.64
-/run/beamOn 76
-# END
-# START: sb129_409.71
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 409.71 keV
-/gps/ang/type iso
-/histo/filename sb129_409.71
-/run/beamOn 15
-# END
-# START: sb129_415.17
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 415.17 keV
-/gps/ang/type iso
-/histo/filename sb129_415.17
-/run/beamOn 6
-# END
-# START: sb129_421.72
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 421.72 keV
-/gps/ang/type iso
-/histo/filename sb129_421.72
-/run/beamOn 3
-# END
-# START: sb129_435.04
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 435.04 keV
-/gps/ang/type iso
-/histo/filename sb129_435.04
-/run/beamOn 14
-# END
-# START: sb129_453.44
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 453.44 keV
-/gps/ang/type iso
-/histo/filename sb129_453.44
-/run/beamOn 35
-# END
-# START: sb129_471.54
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 471.54 keV
-/gps/ang/type iso
-/histo/filename sb129_471.54
-/run/beamOn 3
-# END
-# START: sb129_499.99
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 499.99 keV
-/gps/ang/type iso
-/histo/filename sb129_499.99
-/run/beamOn 28
-# END
-# START: sb129_505.33
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 505.33 keV
-/gps/ang/type iso
-/histo/filename sb129_505.33
-/run/beamOn 34
-# END
-# START: sb129_514.43
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 514.43 keV
-/gps/ang/type iso
-/histo/filename sb129_514.43
-/run/beamOn 10
-# END
-# START: sb129_523.13
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 523.13 keV
-/gps/ang/type iso
-/histo/filename sb129_523.13
-/run/beamOn 101
-# END
-# START: sb129_525.23
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 525.23 keV
-/gps/ang/type iso
-/histo/filename sb129_525.23
-/run/beamOn 11
-# END
-# START: sb129_544.56
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 544.56 keV
-/gps/ang/type iso
-/histo/filename sb129_544.56
-/run/beamOn 1002
-# END
-# START: sb129_589.98
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 589.98 keV
-/gps/ang/type iso
-/histo/filename sb129_589.98
+/histo/filename sb129m1_IT_960188_3.6
 /run/beamOn 1
 # END
-# START: sb129_592.77
+# START: sb129m1_IT_960188_26.111
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 592.77 keV
+/gps/energy 26.111 keV
 /gps/ang/type iso
-/histo/filename sb129_592.77
+/histo/filename sb129m1_IT_960188_26.111
+/run/beamOn 2
+# END
+# START: sb129m1_IT_960188_26.359
+/pga/selectGunAction 1
+/gps/particle gamma
+/gps/position 0 0 0
+/gps/energy 26.359 keV
+/gps/ang/type iso
+/histo/filename sb129m1_IT_960188_26.359
 /run/beamOn 3
 # END
-# START: sb129_606.22
+# START: sb129m1_IT_960188_29.726
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 606.22 keV
+/gps/energy 29.726 keV
 /gps/ang/type iso
-/histo/filename sb129_606.22
-/run/beamOn 9
+/histo/filename sb129m1_IT_960188_29.726
+/run/beamOn 1
 # END
-# START: sb129_633.74
+# START: sb129m1_IT_960188_722.69
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 633.74 keV
+/gps/energy 722.69 keV
 /gps/ang/type iso
-/histo/filename sb129_633.74
+/histo/filename sb129m1_IT_960188_722.69
 /run/beamOn 164
 # END
-# START: sb129_647.94
+# START: sb129m1_IT_960188_1128.6
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 647.94 keV
+/gps/energy 1128.6 keV
 /gps/ang/type iso
-/histo/filename sb129_647.94
-/run/beamOn 8
+/histo/filename sb129m1_IT_960188_1128.6
+/run/beamOn 173
 # END
-# START: sb129_654.28
+# START: sb129m1_beta_716180_130.9
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 654.28 keV
+/gps/energy 130.9 keV
 /gps/ang/type iso
-/histo/filename sb129_654.28
-/run/beamOn 193
+/histo/filename sb129m1_beta_716180_130.9
+/run/beamOn 331
 # END
-# START: sb129_670.31
+# START: sb129m1_beta_716180_433.76
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 670.31 keV
+/gps/energy 433.76 keV
 /gps/ang/type iso
-/histo/filename sb129_670.31
-/run/beamOn 62
+/histo/filename sb129m1_beta_716180_433.76
+/run/beamOn 4028
 # END
-# START: sb129_682.77
+# START: sb129m1_beta_716180_657.78
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 682.77 keV
+/gps/energy 657.78 keV
 /gps/ang/type iso
-/histo/filename sb129_682.77
-/run/beamOn 374
+/histo/filename sb129m1_beta_716180_657.78
+/run/beamOn 5068
 # END
-# START: sb129_684.18
+# START: sb129m1_beta_716180_759.8
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 684.18 keV
+/gps/energy 759.8 keV
 /gps/ang/type iso
-/histo/filename sb129_684.18
-/run/beamOn 40
+/histo/filename sb129m1_beta_716180_759.8
+/run/beamOn 5523
 # END
-# START: sb129_694.77
+# START: sb129m1_beta_716180_788.7
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 694.77 keV
+/gps/energy 788.7 keV
 /gps/ang/type iso
-/histo/filename sb129_694.77
-/run/beamOn 26
+/histo/filename sb129m1_beta_716180_788.7
+/run/beamOn 221
 # END
-# START: sb129_707.08
+# START: te129_60373_459.6
 /pga/selectGunAction 1
 /gps/particle gamma
 /gps/position 0 0 0
-/gps/energy 707.08 keV
+/gps/energy 459.6 keV
 /gps/ang/type iso
-/histo/filename sb129_707.08
-/run/beamOn 9
-# END
-# START: sb129_737.07
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 737.07 keV
-/gps/ang/type iso
-/histo/filename sb129_737.07
-/run/beamOn 29
-# END
-# START: sb129_761.12
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 761.12 keV
-/gps/ang/type iso
-/histo/filename sb129_761.12
-/run/beamOn 281
-# END
-# START: sb129_768.98
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 768.98 keV
-/gps/ang/type iso
-/histo/filename sb129_768.98
-/run/beamOn 21
-# END
-# START: sb129_773.37
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 773.37 keV
-/gps/ang/type iso
-/histo/filename sb129_773.37
-/run/beamOn 183
-# END
-# START: sb129_786.36
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 786.36 keV
-/gps/ang/type iso
-/histo/filename sb129_786.36
-/run/beamOn 70
-# END
-# START: sb129_787.16
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 787.16 keV
-/gps/ang/type iso
-/histo/filename sb129_787.16
-/run/beamOn 113
-# END
-# START: sb129_796.21
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 796.21 keV
-/gps/ang/type iso
-/histo/filename sb129_796.21
+/histo/filename te129_60373_459.6
 /run/beamOn 3
-# END
-# START: sb129_812.97
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 812.97 keV
-/gps/ang/type iso
-/histo/filename sb129_812.97
-/run/beamOn 3132
-# END
-# START: sb129_819.51
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 819.51 keV
-/gps/ang/type iso
-/histo/filename sb129_819.51
-/run/beamOn 90
-# END
-# START: sb129_826.75
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 826.75 keV
-/gps/ang/type iso
-/histo/filename sb129_826.75
-/run/beamOn 4
-# END
-# START: sb129_832.99
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 832.99 keV
-/gps/ang/type iso
-/histo/filename sb129_832.99
-/run/beamOn 4
-# END
-# START: sb129_840.17
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 840.17 keV
-/gps/ang/type iso
-/histo/filename sb129_840.17
-/run/beamOn 2
-# END
-# START: sb129_849.57
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 849.57 keV
-/gps/ang/type iso
-/histo/filename sb129_849.57
-/run/beamOn 5
-# END
-# START: sb129_861.0
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 861.0 keV
-/gps/ang/type iso
-/histo/filename sb129_861.0
-/run/beamOn 4
-# END
-# START: sb129_874.89
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 874.89 keV
-/gps/ang/type iso
-/histo/filename sb129_874.89
-/run/beamOn 35
-# END
-# START: sb129_876.65
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 876.65 keV
-/gps/ang/type iso
-/histo/filename sb129_876.65
-/run/beamOn 179
-# END
-# START: sb129_903.19
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 903.19 keV
-/gps/ang/type iso
-/histo/filename sb129_903.19
-/run/beamOn 9
-# END
-# START: sb129_914.96
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 914.96 keV
-/gps/ang/type iso
-/histo/filename sb129_914.96
-/run/beamOn 1514
-# END
-# START: sb129_940.51
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 940.51 keV
-/gps/ang/type iso
-/histo/filename sb129_940.51
-/run/beamOn 50
-# END
-# START: sb129_966.78
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 966.78 keV
-/gps/ang/type iso
-/histo/filename sb129_966.78
-/run/beamOn 582
-# END
-# START: sb129_992.7
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 992.7 keV
-/gps/ang/type iso
-/histo/filename sb129_992.7
-/run/beamOn 7
-# END
-# START: sb129_996.54
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 996.54 keV
-/gps/ang/type iso
-/histo/filename sb129_996.54
-/run/beamOn 11
-# END
-# START: sb129_1000.5
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1000.5 keV
-/gps/ang/type iso
-/histo/filename sb129_1000.5
-/run/beamOn 3
-# END
-# START: sb129_1022.12
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1022.12 keV
-/gps/ang/type iso
-/histo/filename sb129_1022.12
-/run/beamOn 2
-# END
-# START: sb129_1030.65
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1030.65 keV
-/gps/ang/type iso
-/histo/filename sb129_1030.65
-/run/beamOn 983
-# END
-# START: sb129_1037.29
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1037.29 keV
-/gps/ang/type iso
-/histo/filename sb129_1037.29
-/run/beamOn 20
-# END
-# START: sb129_1087.98
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1087.98 keV
-/gps/ang/type iso
-/histo/filename sb129_1087.98
-/run/beamOn 27
-# END
-# START: sb129_1104.52
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1104.52 keV
-/gps/ang/type iso
-/histo/filename sb129_1104.52
-/run/beamOn 22
-# END
-# START: sb129_1122.48
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1122.48 keV
-/gps/ang/type iso
-/histo/filename sb129_1122.48
-/run/beamOn 6
-# END
-# START: sb129_1126.57
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1126.57 keV
-/gps/ang/type iso
-/histo/filename sb129_1126.57
-/run/beamOn 8
-# END
-# START: sb129_1147.59
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1147.59 keV
-/gps/ang/type iso
-/histo/filename sb129_1147.59
-/run/beamOn 6
-# END
-# START: sb129_1167.95
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1167.95 keV
-/gps/ang/type iso
-/histo/filename sb129_1167.95
-/run/beamOn 16
-# END
-# START: sb129_1179.63
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1179.63 keV
-/gps/ang/type iso
-/histo/filename sb129_1179.63
-/run/beamOn 4
-# END
-# START: sb129_1196.42
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1196.42 keV
-/gps/ang/type iso
-/histo/filename sb129_1196.42
-/run/beamOn 6
-# END
-# START: sb129_1209.03
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1209.03 keV
-/gps/ang/type iso
-/histo/filename sb129_1209.03
-/run/beamOn 61
-# END
-# START: sb129_1211.89
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1211.89 keV
-/gps/ang/type iso
-/histo/filename sb129_1211.89
-/run/beamOn 25
-# END
-# START: sb129_1233.2
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1233.2 keV
-/gps/ang/type iso
-/histo/filename sb129_1233.2
-/run/beamOn 3
-# END
-# START: sb129_1237.81
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1237.81 keV
-/gps/ang/type iso
-/histo/filename sb129_1237.81
-/run/beamOn 16
-# END
-# START: sb129_1258.44
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1258.44 keV
-/gps/ang/type iso
-/histo/filename sb129_1258.44
-/run/beamOn 26
-# END
-# START: sb129_1263.3
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1263.3 keV
-/gps/ang/type iso
-/histo/filename sb129_1263.3
-/run/beamOn 59
-# END
-# START: sb129_1273.1
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1273.1 keV
-/gps/ang/type iso
-/histo/filename sb129_1273.1
-/run/beamOn 11
-# END
-# START: sb129_1281.72
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1281.72 keV
-/gps/ang/type iso
-/histo/filename sb129_1281.72
-/run/beamOn 36
-# END
-# START: sb129_1287.45
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1287.45 keV
-/gps/ang/type iso
-/histo/filename sb129_1287.45
-/run/beamOn 6
-# END
-# START: sb129_1298.7
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1298.7 keV
-/gps/ang/type iso
-/histo/filename sb129_1298.7
-/run/beamOn 8
-# END
-# START: sb129_1301.45
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1301.45 keV
-/gps/ang/type iso
-/histo/filename sb129_1301.45
-/run/beamOn 13
-# END
-# START: sb129_1318.3
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1318.3 keV
-/gps/ang/type iso
-/histo/filename sb129_1318.3
-/run/beamOn 30
-# END
-# START: sb129_1326.98
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1326.98 keV
-/gps/ang/type iso
-/histo/filename sb129_1326.98
-/run/beamOn 45
-# END
-# START: sb129_1384.98
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1384.98 keV
-/gps/ang/type iso
-/histo/filename sb129_1384.98
-/run/beamOn 6
-# END
-# START: sb129_1419.4
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1419.4 keV
-/gps/ang/type iso
-/histo/filename sb129_1419.4
-/run/beamOn 26
-# END
-# START: sb129_1437.52
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1437.52 keV
-/gps/ang/type iso
-/histo/filename sb129_1437.52
-/run/beamOn 21
-# END
-# START: sb129_1475.91
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1475.91 keV
-/gps/ang/type iso
-/histo/filename sb129_1475.91
-/run/beamOn 5
-# END
-# START: sb129_1480.94
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1480.94 keV
-/gps/ang/type iso
-/histo/filename sb129_1480.94
-/run/beamOn 24
-# END
-# START: sb129_1501.04
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1501.04 keV
-/gps/ang/type iso
-/histo/filename sb129_1501.04
-/run/beamOn 4
-# END
-# START: sb129_1526.84
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1526.84 keV
-/gps/ang/type iso
-/histo/filename sb129_1526.84
-/run/beamOn 36
-# END
-# START: sb129_1541.47
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1541.47 keV
-/gps/ang/type iso
-/histo/filename sb129_1541.47
-/run/beamOn 4
-# END
-# START: sb129_1570.09
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1570.09 keV
-/gps/ang/type iso
-/histo/filename sb129_1570.09
-/run/beamOn 57
-# END
-# START: sb129_1582.11
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1582.11 keV
-/gps/ang/type iso
-/histo/filename sb129_1582.11
-/run/beamOn 2
-# END
-# START: sb129_1600.13
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1600.13 keV
-/gps/ang/type iso
-/histo/filename sb129_1600.13
-/run/beamOn 38
-# END
-# START: sb129_1606.72
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1606.72 keV
-/gps/ang/type iso
-/histo/filename sb129_1606.72
-/run/beamOn 1
-# END
-# START: sb129_1622.46
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1622.46 keV
-/gps/ang/type iso
-/histo/filename sb129_1622.46
-/run/beamOn 14
-# END
-# START: sb129_1646.79
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1646.79 keV
-/gps/ang/type iso
-/histo/filename sb129_1646.79
-/run/beamOn 2
-# END
-# START: sb129_1656.1
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1656.1 keV
-/gps/ang/type iso
-/histo/filename sb129_1656.1
-/run/beamOn 85
-# END
-# START: sb129_1669.16
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1669.16 keV
-/gps/ang/type iso
-/histo/filename sb129_1669.16
-/run/beamOn 1
-# END
-# START: sb129_1691.24
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1691.24 keV
-/gps/ang/type iso
-/histo/filename sb129_1691.24
-/run/beamOn 3
-# END
-# START: sb129_1738.16
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1738.16 keV
-/gps/ang/type iso
-/histo/filename sb129_1738.16
-/run/beamOn 484
-# END
-# START: sb129_1762.42
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1762.42 keV
-/gps/ang/type iso
-/histo/filename sb129_1762.42
-/run/beamOn 2
-# END
-# START: sb129_1779.78
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1779.78 keV
-/gps/ang/type iso
-/histo/filename sb129_1779.78
-/run/beamOn 5
-# END
-# START: sb129_1843.49
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1843.49 keV
-/gps/ang/type iso
-/histo/filename sb129_1843.49
-/run/beamOn 1
-# END
-# START: sb129_1871.58
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1871.58 keV
-/gps/ang/type iso
-/histo/filename sb129_1871.58
-/run/beamOn 23
-# END
-# START: sb129_1891.1
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 1891.1 keV
-/gps/ang/type iso
-/histo/filename sb129_1891.1
-/run/beamOn 1
-# END
-# START: sb129_2071.36
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 2071.36 keV
-/gps/ang/type iso
-/histo/filename sb129_2071.36
-/run/beamOn 47
-# END
-# START: sb129_2086.11
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 2086.11 keV
-/gps/ang/type iso
-/histo/filename sb129_2086.11
-/run/beamOn 4
-# END
-# START: sb129_2114.67
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 2114.67 keV
-/gps/ang/type iso
-/histo/filename sb129_2114.67
-/run/beamOn 27
-# END
-# START: sb129_2134.86
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 2134.86 keV
-/gps/ang/type iso
-/histo/filename sb129_2134.86
-/run/beamOn 2
-# END
-# START: sb129_2265.27
-/pga/selectGunAction 1
-/gps/particle gamma
-/gps/position 0 0 0
-/gps/energy 2265.27 keV
-/gps/ang/type iso
-/histo/filename sb129_2265.27
-/run/beamOn 2
 # END
