@@ -265,16 +265,18 @@ def decays_over_hour(trapping_time):
 def simple_neec(time, charge):
     #time_decay =   [0, .1, .2, .3, .4, .5, .6, .7]
     #charge_decay = [.78, .62, .41, .35, .2, .18, .15, .13]
-    my_decay_fit = fit_me(time, charge, 6)[0]
+    my_decay_fit = fit_me(time, charge, 4)[0]
     #print(my_decay_fit)
     print(cb_rate_func(60, my_decay_fit))
     neec_total = 0
     neec_time = 60
     breed_time = .7
-    time_slices = 100
+    time_slices = 60
     trap_particle_count = 2e5
     time_slice_length = neec_time / time_slices
     for mytime in np.linspace(0, neec_time, time_slices):
+        print("Time",mytime, "CB:", cb_rate_func(mytime, my_decay_fit))
+        print(trap_particle_count * cb_rate_func(mytime, my_decay_fit))
         neec_total = neec_total + (calc_neec_xsec(trap_particle_count * cb_rate_func(mytime, my_decay_fit)) * (neec_time/time_slices))
     print("Neec total:", neec_total)
     neec_total = neec_total * (3600/(neec_time + breed_time)) * neec_time # 1285.71 #* .001
@@ -284,20 +286,23 @@ def simple_neec(time, charge):
 #charge = [0, 0, 0.024, 0.178, 0.408, 0.598, 0.717, 0.78, 0.81, 0.83, 0.84]
 
 #time = np.linspace(0, 60, 600)
-time = [0, .1, 1, 1.2, 1.4, 1.6, 2.0, 4.0, 6.0, 8.0, 10, 60]
+time = [0, .1, 1, 1.2, 1.4, 1.6, 2.0, 4.0, 6.0, 8.0, 10, 20, 40, 60]
 #charge_decay = [.78, .62, .38, .2, .16, .15]  #  This is for 8.8keV
-charge = [.78, .75, .72, .67, .64, .60, .54, .41, .41, .41, .41, .41]  # this is for 7.1keV
+charge = [.78, .75, .72, .67, .64, .60, .54, .41, .41, .41, .41, .41, .41, .41]  # this is for 7.1keV
 
 #poly_fit = [ 2.06312766e-11, -8.49120473e-09,  1.10899128e-06, -6.57615944e-05,
  # 1.91855075e-03, -2.60331334e-02,  5.32627725e-01]
-#poly_fit = fit_me(time, charge, 4)
-#my_func_output = []
-#for mytime in time:
-#    my_val = 0
-#    my_val = cb_rate_func(mytime, poly_fit)
-#    my_func_output.append(my_val)
-#    print(my_val)
-#plot_cb_rate(time, my_func_output)
+poly_fit = fit_me(time, charge, 4)[0]
+cb_rate_func(0, poly_fit)
+
+print(poly_fit)
+my_func_output = []
+for mytime in time:
+    my_val = 0
+    my_val = cb_rate_func(mytime, poly_fit)
+    my_func_output.append(my_val)
+    print(my_val)
+plot_cb_rate(time, my_func_output)
 
 simple_neec(time, charge)
 #poly_fit = np.array([-7.31702769e-10,  1.41824010e-07, -1.05850904e-05,  3.79854445e-04, -6.63719139e-03,  4.95546883e-02,  5.71005542e-01])
