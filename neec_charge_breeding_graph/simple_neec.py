@@ -25,19 +25,15 @@ def calc_neec_xsec(ionDensity=2e5):
     #print("Cross sec:  ", calc_xsec)
     #print("Electron Velocity (cm/s)", f"{electronVelocity:.2e}")
     #print("Electron Density cm^-3:", f"{electronDensity:.2e}")
-    print("Neon xsec eV/s:", f"{calc_xsec:.2e}")
     return calc_xsec  # per second
 
 
-def simple_neec():
+def simple_neec(total_trap_particle_count, neecing_time, breeding_time):
     array_eff = 0.001
     order_increase_list = [1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9]
     days = 7  # days to run
     neec_total = 0
-    neecing_time = 60  # NEECing time in seconds
-    breeding_time = .7
     cb_avg = 0.41
-    total_trap_particle_count = 2e5  # MRTOF
     trap_neon_like_count = total_trap_particle_count * cb_avg
     neec_xsec_w_cb_avg = calc_neec_xsec(trap_neon_like_count)
     neec_total_count_per_neec_cycle = neec_xsec_w_cb_avg * neecing_time
@@ -45,6 +41,7 @@ def simple_neec():
     neec_total = neec_total_count_per_neec_cycle * cycles_per_hour
 
     print("Neon-like ions in Trap:", trap_neon_like_count)
+    print("XSec for Neon-like ions in trap eV/s:", f"{calc_xsec:.2e}")
     print("Percent Avg Charge bread to Neon-like:", cb_avg)
     print("Breeding Time:", breeding_time, "NEECing Time:", neecing_time)
     print("Total NEEC counts per cycle:", neec_total_count_per_neec_cycle)
@@ -56,4 +53,4 @@ def simple_neec():
         print("Order Multiplier:", f"{my_order:.0e}", "Observed NEEC evets(w/array eff):", f"{neec_total*24*days*array_eff*my_order:.2e}")
 
 
-simple_neec()
+simple_neec(total_trap_particle_count=2e5, neecing_time=60, breeding_time=.7)
