@@ -58,7 +58,7 @@ class gammas:
 
     def write_gammas(self, decay_num, total_ions, decay_name, decay_gamma_file):
         decays = decay_num * total_ions
-        print("Decays From:", decay_name, ":", decays)
+        print("Decays From:", decay_name, ":", "{:.2e}".format(decays))
         self.process_gamma_file(decay_gamma_file, decays, decay_name)
 
     def parent_decay_to_gammas(self, total_ions, decay_parent, decay_to_gammas):
@@ -98,8 +98,8 @@ def in129(mygamma, ion_count):
 
 def from_RFQ():
     mygamma = gammas("sb129_from_rfq_60s_60cycles_g4_background.mac",
-                     time_in_trap_per_cycle=60,
-                     trap_cycles=60)
+                     time_in_trap_per_cycle=3600,
+                     trap_cycles=1)
     sb129m1_rate = 1e7
     trap_contents = {cs129: sb129m1_rate * (10/4), sb129: sb129m1_rate / 4, sb129m1: sb129m1_rate}
     #trap_contents = {sb129m1: 2e5}
